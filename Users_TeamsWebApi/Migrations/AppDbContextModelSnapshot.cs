@@ -59,13 +59,10 @@ namespace Users_TeamsWebApi.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StatudId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeamId")
+                    b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
@@ -83,28 +80,16 @@ namespace Users_TeamsWebApi.Migrations
             modelBuilder.Entity("Users_TeamsWebApi.Data.Models.User", b =>
                 {
                     b.HasOne("Users_TeamsWebApi.Data.Models.Status", "Status")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("StatusId");
 
                     b.HasOne("Users_TeamsWebApi.Data.Models.Team", "Team")
-                        .WithMany("Users")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("TeamId");
 
                     b.Navigation("Status");
 
                     b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("Users_TeamsWebApi.Data.Models.Status", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Users_TeamsWebApi.Data.Models.Team", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

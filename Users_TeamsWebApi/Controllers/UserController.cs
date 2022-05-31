@@ -28,6 +28,19 @@ namespace Users_TeamsWebApi.Controllers
             return Ok(user);
         }
 
+         [HttpGet("get-user-by-status-id")]
+        public IActionResult GetUserByStatusId(int statusId)
+        {
+            var users = _userService.GetUserByStatusId(statusId);
+            return Ok(users);
+        }
+         [HttpGet("get-user-by-team-id")]
+        public IActionResult GetUserByTeamId(int teamId)
+        {
+            var users = _userService.GetUserByTeamId(teamId);
+            return Ok(users);
+        }
+
         [HttpPost("add-user")]
         public IActionResult AddUser([FromBody] UserVM user)
         {

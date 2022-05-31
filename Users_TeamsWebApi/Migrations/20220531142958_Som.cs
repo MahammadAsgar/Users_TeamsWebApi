@@ -2,7 +2,7 @@
 
 namespace Users_TeamsWebApi.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class Som : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,6 +39,7 @@ namespace Users_TeamsWebApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StatusId = table.Column<int>(type: "int", nullable: true),
                     TeamId = table.Column<int>(type: "int", nullable: true)
                 },

@@ -15,13 +15,29 @@ namespace Users_TeamsWebApi.Service
         }
         public void AddUser(UserVM userVM)
         {
+           
             var user = new User()
             {
                 UserName = userVM.UserName,
                 Password = System.Text.Encoding.UTF8.GetBytes(userVM.Password).ToString(),
-                StatudId = userVM.StatusId
             };
-
+            foreach (var item in _context.Statuses)
+            {
+              if(item.Id==userVM.StatusId)
+                {
+                    user.Status = item;
+                    break;
+                }
+            }
+            foreach (var item in _context.Teams)
+            {
+                if (item.Id==userVM.TeamId)
+                {
+                    user.Team = item;
+                    break;
+                }
+            }
+  
             _context.Users.Add(user);
             _context.SaveChanges();
         }
@@ -36,6 +52,30 @@ namespace Users_TeamsWebApi.Service
         public List<User> GetAllUsers()
         {
             return _context.Users.ToList();
+        }
+        public List<User> GetUserByStatusId(int statusId)
+        {
+            List<User> users = new List<User>();
+            foreach (var item in _context.Users)
+            {
+                if (item.Status.Id == statusId)
+                {
+                    users.Add(item);
+                }
+            }
+            return users;
+        }
+        public List<User> GetUserByTeamId(int teamId)
+        {
+            List<User> users = new List<User>();
+            foreach (var item in _context.Users)
+            {
+                if (item.Team.Id== teamId)
+                {
+                    users.Add(item);
+                }
+            }
+            return users;
         }
     }
 }

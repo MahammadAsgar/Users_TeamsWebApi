@@ -15,15 +15,10 @@ namespace Users_TeamsWebApi.Service
         }
         public void AddTeam(TeamVM teamVM)
         {
-            var users = _context.Users;
             var team = new Team()
             {
                 Title = teamVM.TeamTitle,
             };
-            foreach (var id in teamVM.UserIds)
-            {
-                team.Users.Add(users.FirstOrDefault(x => x.Id == id));
-            }
             _context.Teams.Add(team);
             _context.SaveChanges();
         }

@@ -13,11 +13,14 @@ namespace Users_TeamsWebApi.Repository
         //{
         //    modelBuilder.Entity<Status>()
         //        .HasMany(c => c.Users)
-        //        .WithOne(c => c.Status);
+        //        .WithOne(c => c.Status)
+        //        .IsRequired();
+
 
         //    modelBuilder.Entity<Team>()
-        //        .HasMany(c=>c.Users)
-        //        .WithOne(c=>c.Team);
+        //        .HasMany(c => c.Users)
+        //        .WithOne(c => c.Team)
+        //        .IsRequired();
         //}
         public DbSet<User> Users { get; set; }
         public DbSet<Team> Teams { get; set; }

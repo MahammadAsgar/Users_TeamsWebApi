@@ -10,8 +10,8 @@ using Users_TeamsWebApi.Repository;
 namespace Users_TeamsWebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220530135947_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20220531142958_Som")]
+    partial class Som
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace Users_TeamsWebApi.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
@@ -83,17 +86,12 @@ namespace Users_TeamsWebApi.Migrations
                         .HasForeignKey("StatusId");
 
                     b.HasOne("Users_TeamsWebApi.Data.Models.Team", "Team")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("TeamId");
 
                     b.Navigation("Status");
 
                     b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("Users_TeamsWebApi.Data.Models.Team", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
